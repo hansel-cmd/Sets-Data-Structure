@@ -18,7 +18,12 @@ void displaySet(SET S)
 
 void insertToSet(SET S, int data)
 {
-    S[data] = 1;
+    if (data >= 0 && data < SIZE) S[data] = 1;
+}
+
+void deleteFromSet(SET S, int data)
+{
+    if (data >= 0 && data < SIZE) S[data] = 0;
 }
 
 void populate(SET S, int data[], int size)
@@ -92,7 +97,7 @@ int main()
     printf("SET B: ");
     displaySet(B);
 
-    
+
 
     SET *C;
     C = unionSet(A, B);
