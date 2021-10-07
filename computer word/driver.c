@@ -18,14 +18,17 @@ void displayBitPattern(SET s)
 	printf("\n");
 }
 
-
 // data is just the position of the bit :)
 void insertToSet(SET *s, int data)
 {
     if (data <= sizeof(*s) * 8) *s = *s | (1 << data);
 }
 
-
+// data is just the position of the bit :)
+void deleteFromSet(SET *s, int data)
+{
+    if (data <= sizeof(*s) * 8) *s = *s & ~(1 << data);
+}
 
 void populate(SET *s, int data[], int size)
 {
@@ -97,8 +100,8 @@ int main()
 
 
     SET C;
-    int data[] = {0, 4, 7};
-    populate(&C, data, 3);
+    int data[] = {0, 4, 7, -1};
+    populate(&C, data, 4);
     printf("\nBit Pattern of SET C = %d\n", C);
     displayBitPattern(C);
     displayElement(C);
@@ -111,6 +114,11 @@ int main()
      *         7  4    0   <== elements : see data[]
      * 
      **/
+
+    deleteFromSet(&C, 4);
+    printf("\nBit Pattern of SET C = %d\n", C);
+    displayBitPattern(C);
+    displayElement(C);
 
     SET D;
     D = unionSet(A, B);
